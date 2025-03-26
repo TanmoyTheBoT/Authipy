@@ -1,10 +1,5 @@
 # Main Dependencies
-PyQt5>=5.15.0
-pyotp>=2.8.0
-pyperclip>=1.8.2
-PyQRCode>=1.2.1
-pypng>=0.20220715.0
-
+-r requirements.txt
 # Testing Dependencies
 pytest>=7.0.0
 pytest-qt>=4.2.0
