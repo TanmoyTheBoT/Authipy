@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Authipy"
+dynamic = ["version"]
+description = "2FA Authenticator"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [{ name = "TanmoyTheBoT" }]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "PyQt5>=5.15.0",
+    "pyotp>=2.8.0",
+    "pyperclip>=1.8.2",
+    "PyQRCode>=1.2.1",
+    "pypng>=0.20220715.0",
+]
+
+[dependency-groups]
+dev = [
+    "build>=1.2.2.post1",
+    "pillow>=10.4.0",
+    "sip>=6.8.6",
+    "twine>=6.1.0",
+    "pytest>=7.0.0",
+    "pytest-qt>=4.2.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.10.0",
+    "pytest-xvfb>=2.0.0",
+    "pytest-timeout>=2.1.0",
+]
+
+[project.scripts]
+authipy = "authipy.main:main"
+
+[project.urls]
+Homepage = "https://github.com/TanmoyTheBoT/Authipy"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["authipy*"]
+
+[tool.setuptools.dynamic]
+version = { attr = "authipy.version.__version__" }
+
+[tool.uv]
+required-environments = [
+    "sys_platform == 'win32' and platform_machine == 'AMD64'",
+]
