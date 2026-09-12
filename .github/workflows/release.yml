@@ -42,14 +42,6 @@ jobs:
       - name: Build Standalone Executable
         shell: pwsh
         run: |
-          uv pip install pip
-          set PYINSTALLER_COMPILE_BOOTLOADER=1
-          set "PYINSTALLER_BOOTLOADER_WAF_ARGS=--example-option=example-value --example-flag"
-          uv run python -m pip uninstall PyInstaller
-          uv run python -m pip cache remove PyInstaller
-          uv run python -m pip install --verbose --no-binary=PyInstaller PyInstaller
-          New-Item -ItemType Directory -Force -Path exe-dist | Out-Null
-          uv run python -m PyInstaller --noconsole --onefile --icon=docs/images/test.jpg --name Authipy --distpath exe-dist src/authipy/main.py
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
@@ -70,3 +62,11 @@ jobs:
         run: |
           uv run python -m twine check package-dist/*
           uv run python -m twine upload --verbose package-dist/*
+          uv pip install pip
+          set PYINSTALLER_COMPILE_BOOTLOADER=1
+          set "PYINSTALLER_BOOTLOADER_WAF_ARGS=--example-option=example-value --example-flag"
+          uv run python -m pip uninstall PyInstaller
+          uv run python -m pip cache remove PyInstaller
+          uv run python -m pip install --verbose --no-binary=PyInstaller PyInstaller
+          New-Item -ItemType Directory -Force -Path exe-dist | Out-Null
+          uv run python -m PyInstaller --noconsole --onefile --icon=docs/images/test.jpg --name Authipy --distpath exe-dist src/authipy/main.py
