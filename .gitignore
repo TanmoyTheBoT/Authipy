@@ -1,3 +1,5 @@
+exe-dist/
+package-dist/
 htmlcov/
 # Python
 __pycache__/
