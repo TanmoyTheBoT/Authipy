@@ -36,7 +36,7 @@ pip install authipy
 authipy  # to run
 ```
 
-### Method 3: Build from Source
+### Method 3: Build from Source with uv
 
 1. Clone the repository:
 ```bash
@@ -44,37 +44,36 @@ git clone https://github.com/TanmoyTheBoT/authipy.git
 cd authipy
 ```
 
-2. Create and activate virtual environment (recommended):
+2. Install uv if needed:
 ```bash
-python -m venv venv
-venv\\Scripts\\activate   # Windows
+pip install uv
 ```
 
-3. Install dependencies:
+3. Sync the project environment and dev dependencies:
 ```bash
-pip install -r requirements.txt
+uv sync --group dev
 ```
 
-4. Install in development mode:
+4. Run the application:
 ```bash
-pip install -e .
+uv run authipy
 ```
 
-5. Run the application:
+5. Build the Python package (optional):
 ```bash
-authipy
+uv build
 ```
 
-6. Build executable (optional):
+6. Build a single-file executable (optional):
 ```bash
 # Install PyInstaller
-pip install pyinstaller Pillow sip
+uv pip install pyinstaller
 
 # Build single-file executable
-pyinstaller --clean --noconsole --onefile --icon=docs/images/test.jpg --name Authipy src/authipy/main.py
+uv run python -m PyInstaller --noconsole --onefile --icon=docs/images/test.jpg --name Authipy --distpath exe-dist src/authipy/main.py
 ```
 
-The executable will be created in the `dist` directory.
+The executable will be created in the `exe-dist` directory.
 
 ## Usage
 
@@ -102,15 +101,15 @@ The executable will be created in the `dist` directory.
 ## Contributing
 
 1. Fork the repository
-2. Install dev dependencies:
+2. Install the project and dev dependencies:
 ```bash
-pip install -r requirements-dev.txt
+uv sync --group dev
 ```
 3. Make changes
 4. Run tests:
 ```bash
-pytest
-pytest --cov=src --cov-report=html  # coverage report
+uv run pytest
+uv run pytest --cov=src --cov-report=html  # coverage report
 ```
 5. Submit Pull Request
 
